@@ -8,9 +8,7 @@ export default class Start {
   constructor(){
   this.bot = new Bot().main;
   this.creat();
- }
-
-
+   }
      creat(){
       this.bot.start( async (ctx) => {
       const user = await User.findOne(ctx.message.from);
@@ -24,7 +22,7 @@ export default class Start {
      })
 
  }
-
+j
 
 
 }
