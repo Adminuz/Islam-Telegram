@@ -3,15 +3,46 @@ import OrmMysql from './OrmMysql.js'
 class User extends OrmMysql{
   // ! ctx.message.from Передавайми Даны!
 
-static async findOne({id}) {
+    static async findOne({id}) {
     const connect = await this.dbcon();
     return new Promise((resolve) =>{ 
-      connect.query(`SELECT * FROM user WHERE uid=(${id})`, (err, res) => resolve(res[0]));
+      connect.query(`SELECT * 
+      FROM user 
+      WHERE uid=(${id})`,
+       (err, res) => resolve(res[0]));
 
-});
+   });
+   }
+
+
+
+   static async findCityAll(id) {
+    const connect = await this.dbcon();
+    return new Promise((resolve) =>{ 
+      connect.query(
+        `SELECT * 
+      FROM user 
+      WHERE city=(${id})`,
+        (err, res) => resolve(res)
+      );
+
+   });
+   }
+
+
+
+
+  static async findAll() {
+  const connect = await this.dbcon();
+  return new Promise((resolve) =>{ 
+    connect.query(`SELECT * FROM user `, (err, res) => resolve(res));
+
+  });
+
 }
 
-static async add({id , first_name , username}) {
+
+  static async add({id , first_name , username}) {
    // ! ctx.message.from Передавайми Даны!
      const connect = await this.dbcon();
      return new Promise((resolve) => {
@@ -27,20 +58,16 @@ static async add({id , first_name , username}) {
   }
 
 
-  static async update(id,city){
-    const connect =  await this.dbcon();
-   return new Promise(resolve =>{
-   connect.query(`UPDATE user SET city=(${city}) WHERE uid=(${id})`, (err, results) => {
+    static async update(id,city){
+     const connect =  await this.dbcon();
+     return new Promise(resolve =>{
+     connect.query(`UPDATE user SET city=(${city}) WHERE uid=(${id})`, (err, results) => {
       if(err)resolve(false)
        resolve(true)
       });
+    });
   
-  
-  
-  
-   });
-  
-  }
+   }
 
 
 

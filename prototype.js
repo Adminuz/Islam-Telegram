@@ -23,6 +23,6 @@ Object.prototype.userID = function() {
  return this.message.from.id
 }
 
-Date.prototype.monthDay = function(initDay = 0){
+Date.prototype.monthDay = function(initDay){
    return {month: this.getMonth()+1 ,day: this.getDate() + initDay}
 }

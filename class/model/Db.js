@@ -18,14 +18,20 @@ import mysql from 'mysql2';
           }
       
      #createConnect(){
-
     return new Promise((resolve) => {
-     if(this.#dbcon){ resolve(true) }
+     if(this.#dbcon){  resolve(true); }
       else{ 
       const db =  mysql.createConnection(this.#confing);
      db.connect((err) => {
      if (err) resolve(false);
-     else this.#dbcon = db; resolve(true);  console.log("MySQL Connection");
+     else {
+       this.#dbcon = db; 
+       this.#dbcon.query(`SET time_zone = '+05:00'`)
+       console.log("MySQL Connection");
+       resolve(true);   
+       
+       
+      }
     })}
      this.#dbEnd()
     })
@@ -40,8 +46,15 @@ import mysql from 'mysql2';
    },25000) 
 }
 
+
+
   connect = async () => await this.#createConnect() ? this.#dbcon : this.#dbcon
- 
 
 
-}
+    // if(this.#dbcon == null) {
+    //   if(await this.#createConnect()) return this.#dbcon;
+
+    // }else return this.#dbcon;
+    
+
+ }

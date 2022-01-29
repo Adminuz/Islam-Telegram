@@ -6,11 +6,8 @@ import Keyboard from './Keyboard.js'
 export default class PrayTodey extends Keyboard {
 constructor(bot,name){
     super(bot,name); 
-   this.date = new Date().monthDay();
-    if(PrayTodey.exites){
-      this.date.day +=1;
-    }
-    PrayTodey.exites = true; 
+   this.date = new Date().monthDay(PrayTodey.exites ? 1 : 0);
+    PrayTodey.exites = true;  
    }
      render(ctx) {
       const {month,day} =  this.date;

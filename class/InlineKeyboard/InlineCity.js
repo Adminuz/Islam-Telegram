@@ -13,9 +13,12 @@ class InlineCity {
    }
 
    async init(){
-   const array = await City.findAll();
-   this.ctx.telegram.sendMessage(this.ctx.from.id,
-    '🌍 Минтақалар',Markup.inlineKeyboard( this.gener(array)));
+     const array = await City.findAll();
+     this.ctx.telegram.sendMessage(
+       this.ctx.from.id,
+       "🌍 Минтақалар",
+       Markup.inlineKeyboard(this.gener(array))
+     );
    }
 
 
@@ -47,7 +50,10 @@ class InlineCity {
    gener(array){
     let newArray = [], genarray = [];
     for (let i = 0; i < array.length; i++) {
-       genarray.push({ text: `${array[i].name}`, callback_data: `city:${array[i].value}:${array[i].name}`, hide: false })
+       genarray.push({ 
+        text: `${array[i].name}`,
+        callback_data: `city:${array[i].value}:${array[i].name}`, 
+        hide: false })
         if(genarray.length == 4){
         newArray.push(genarray);
         genarray= []
