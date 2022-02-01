@@ -21,7 +21,7 @@ class InlineCity {
      );
    }
 
-
+  
   action(){
    this.bot.action(/city:(.*?)/, async (ctx, next) => { 
      const {id} = ctx.update.callback_query.from;

@@ -5,14 +5,19 @@ class UserNotification extends User{
     static isOnNotificatinUser(){
      return new Promise(async resolve => {
      const connect = await this.dbcon();
-      connect.query(`SELECT DISTINCT city FROM user WHERE is_on_notificatin = 1`,(err,res) => {
-      const list = res.map(({city}) => city).toString().replace(/[(.*)]/,'$1');
-      resolve(list);
-     });
-
-
-
-  })
+      connect.query(
+        `SELECT DISTINCT city 
+      FROM user 
+      WHERE is_on_notificatin = 1`,
+        (err, res) => {
+          const list = res
+            .map(({ city }) => city)
+            .toString()
+            .replace(/[(.*)]/, "$1");
+          resolve(list);
+        }
+      );
+})
 
 
 
@@ -52,7 +57,9 @@ class UserNotification extends User{
     connect.query(
       `SELECT * 
   FROM user 
-  WHERE city=(${city}) AND is_on_notificatin = 1 AND last_notificatin < ((now() - INTERVAL 5 MINUTE))`,
+  WHERE city=(${city}) AND 
+  is_on_notificatin = 1 AND 
+  last_notificatin < ((now() - INTERVAL 6 MINUTE))`,
     (err, res) => resolve(res)
 );
   });
@@ -73,9 +80,28 @@ static  updateLast(id){
    );
   });
 
+}
+
+
+ static switchNotif(data,id){
+   return new Promise( async resolve => {
+    const connect =  await this.dbcon();
+    connect.query(
+      `UPDATE user 
+    SET is_on_notificatin = ${data}
+    WHERE uid=(${id})`,
+      (err, results) => {
+        if (err) resolve(false);
+        resolve(data);
+      }
+    );
+   
+
+
+   });
+
+
  }
-
-
 
 
 

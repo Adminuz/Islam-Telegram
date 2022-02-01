@@ -6,11 +6,11 @@ import Keyboard from './Keyboard.js'
 export default class PrayTodey extends Keyboard {
 constructor(bot,name){
     super(bot,name); 
-   this.date = new Date().monthDay(PrayTodey.exites ? 1 : 0);
+    this.day = PrayTodey.exites ? 1 : 0
     PrayTodey.exites = true;  
    }
      render(ctx) {
-      const {month,day} =  this.date;
+      const {month,day} =  new Date().monthDay(this.day);
       return new Promise( async (resolve) => {
       const {city} =  await User.findOne(ctx.message.from);
       const {value,name}  = await City.findOne(city);

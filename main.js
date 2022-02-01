@@ -5,3 +5,4 @@ process.env.TZ = 'Asia/Tashkent'
  new Start();
  new NotificationSys();
 
+//  console.log(process.env.BOT_TOKEN)

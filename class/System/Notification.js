@@ -8,7 +8,8 @@ class NotificationSys{
 
    constructor(){
     this.bot = new Bot().main;
-   setInterval( async () => await this.getPrayTime(),7000);
+    this.getPrayTime();
+   setInterval( async () => await this.getPrayTime(),60000);
   }
 async getPrayTime(){
   console.log(this.getTime())
