@@ -2,10 +2,10 @@ import mysql from 'mysql2';
 
  export default class Db2 { 
         #confing = { 
-        host: "mysql.adm-uphp-gmail-c.myjino.ru",
-        user: "046376761_islam",
-        database: "adm-uphp-gmail-c_islam",
-        password: "P5ytaEAx!hkN"
+        host: "*******",
+        user: "*********",
+        database: "**********",
+        password: "********"
         }
         #end = null
         #dbcon = null;
